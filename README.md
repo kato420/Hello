@@ -51,6 +51,7 @@ Un TA (que no diremos quién 🤫) volvió a meter mano en el repositorio y romp
 Cada integrante edita **su tarjeta** en `index.html` dentro de `<div class="team__grid">`.
 
 Reemplaza en tu `<div class="team-card">`:
+
 - **Foto de perfil** (`src` y `alt` en `<img>`)
 - **Nombre completo** (`<h3 class="team-card__name">`)
 - **Especialidad o rol** (`<p class="team-card__role">`)
@@ -59,6 +60,7 @@ Reemplaza en tu `<div class="team-card">`:
 **Conflicto esperado:** los 3 editan secciones cercanas en el mismo archivo → deberán resolver el merge conflict conservando los 3 nombres.
 
 Ejemplo de tarjeta correctamente completada:
+
 ```html
 <div class="team-card__content">
   <h3 class="team-card__name">Sparky García</h3>
@@ -91,6 +93,7 @@ La rama `main` tiene todo el CSS en un único archivo monolítico `index.css`.
 **Conflicto esperado:** al hacer merge de `clean-css` a `main`, tendrán dos versiones completamente distintas del sistema de estilos. Deben integrarlas correctamente.
 
 El `index.html` de la rama `clean-css` importa los módulos así:
+
 ```html
 <link rel="stylesheet" href="styles/page.css" />
 <link rel="stylesheet" href="styles/header.css" />
@@ -111,10 +114,10 @@ Usando la rama `navbar-fix`, corrige los enlaces del `<nav>` en `index.html`.
 Los 3 links del menú apuntan a IDs incorrectos:
 
 | Link visible | href actual (roto) | href correcto |
-|---|---|---|
-| Inicio | `#inicio` | `#hero` |
-| Acerca de | `#sobre` | `#about` |
-| Equipo | `#integrantes` | `#team` |
+| ------------ | ------------------ | ------------- |
+| Inicio       | `#inicio`          | `#hero`       |
+| Acerca de    | `#sobre`           | `#about`      |
+| Equipo       | `#integrantes`     | `#team`       |
 
 ---
 
@@ -123,8 +126,9 @@ Los 3 links del menú apuntan a IDs incorrectos:
 El deploy es **automático** gracias al workflow `.github/workflows/deploy.yml`. Cada push a `main` despliega la página sin configuración manual.
 
 Solo necesitan habilitarlo una vez en la configuración del repositorio:
+
 1. Ir a **Settings → Pages**
-2. En *Source* seleccionar **GitHub Actions**
+2. En _Source_ seleccionar **GitHub Actions**
 3. A partir de ahí, cada merge a `main` despliega automáticamente
 
 La URL del sitio aparece en la pestaña **Environments → github-pages** del repositorio.
@@ -168,22 +172,23 @@ La tarea del equipo es **resolver esto manualmente**, eliminando los marcadores 
 
 ## 🗂️ Resumen de ramas y PRs
 
-| Rama | Responsable | Tipo | PR |
-|---|---|---|---|
-| `feat/member-nombre` | Cada integrante | Datos personales | 1 por persona |
-| `clean-css` | 1 integrante | CSS modular | 1 PR |
-| `navbar-fix` | 1 integrante | Corrección de enlaces | 1 PR |
+| Rama                 | Responsable     | Tipo                  | PR            |
+| -------------------- | --------------- | --------------------- | ------------- |
+| `feat/member-nombre` | Cada integrante | Datos personales      | 1 por persona |
+| `clean-css`          | 1 integrante    | CSS modular           | 1 PR          |
+| `navbar-fix`         | 1 integrante    | Corrección de enlaces | 1 PR          |
 
 > El líder puede asignar las ramas `clean-css`, `navbar-fix` como tareas a distintos integrantes del equipo.
 
 ## ⚙️ GitHub Actions incluidas
 
-| Workflow | Archivo | Se ejecuta en |
-|---|---|---|
+| Workflow                | Archivo                          | Se ejecuta en        |
+| ----------------------- | -------------------------------- | -------------------- |
 | Validación HTML + links | `.github/workflows/validate.yml` | Cada PR hacia `main` |
-| Deploy a GitHub Pages | `.github/workflows/deploy.yml` | Cada push a `main` |
+| Deploy a GitHub Pages   | `.github/workflows/deploy.yml`   | Cada push a `main`   |
 
 **`validate.yml`** corre dos checks en cada PR:
+
 - Valida que el HTML sea correcto según el estándar W3C
 - Verifica que todos los `href="#..."` del HTML apunten a un `id` que realmente existe — el PR **no podrá mergearse** si el navbar tiene links rotos
 
